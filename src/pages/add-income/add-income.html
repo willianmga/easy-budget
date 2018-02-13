@@ -1,12 +1,47 @@
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>add-income</ion-title>
+  <ion-navbar *ngIf="insertState" color="primary">
+    <ion-title>Adicionar Receita</ion-title>
+  </ion-navbar>
+
+  <ion-navbar *ngIf="!insertState" color="danger">
+    <ion-title >Editar Receita</ion-title>
   </ion-navbar>
 
 </ion-header>
 
-
 <ion-content padding>
+
+  <ion-list>
+
+    <ion-item>
+      <ion-label stacked>Descrição</ion-label>
+      <ion-input type="text" [(ngModel)]="currentIncome.title" name="title"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Valor</ion-label>
+      <ion-input type="text" [(ngModel)]="currentIncome.amount" name="amount"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Conta</ion-label>
+      <ion-select [(ngModel)]="currentIncome.accountId" name="accountId">
+        <ion-option *ngFor="let account of accounts" value="account.id">{{ account.name }}</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-grid>
+      <ion-row>
+        <ion-col width-50>
+          <button ion-button (click)="goBack()" color="danger" block>Cancelar</button>
+        </ion-col>
+        <ion-col width-50>
+          <button ion-button (click)="saveOrUpdate()" color="primary" block>Salvar</button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+  </ion-list>
 
 </ion-content>

@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, ToastController } from 'ionic-angular';
+
+import { AddIncomePage } from '../pages'
+import { EasyBudgetApi } from '../../providers/app-providers';
 
 @IonicPage()
 @Component({
@@ -8,38 +11,59 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class IncomesPage {
 
-  allIncomes: any[];
+  allIncomes: any;
   selectedMonthName: any;
 
-  mockedIncomes = [
-    {
-      id: 1,
-      title: 'Salário do mês (Willian)',
-      amount: 2200,
-      type: 'C',
-      accountId: 1,
-      tags: ['salary'],
-      createdDate: '02/07/2018T12:00:00',
-      userName: 'willianmga'
-    }, {
-      id: 1,
-      title: 'Salário do mês (Camila)',
-      amount: 1100,
-      type: 'C',
-      accountId: 1,
-      tags: ['salary'],
-      createdDate: '02/07/2018T12:05:00',
-      userName: 'willianmga'
-    }
-  ];
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(private navCtrl: NavController,
+              private navParams: NavParams,
+              private loadingController: LoadingController,
+              private toastController: ToastController,
+              private easyBudgetApi: EasyBudgetApi) {
 
   }
 
   ionViewDidLoad() {
-    this.selectedMonthName = this.navParams.get('selectedMonthName');
-    this.allIncomes = this.mockedIncomes;
+    this.selectedMonthName = this.navParams.get('name');
+
+    let loading = this.loadingController.create({
+      content: 'Buscando receitas...'
+    });
+
+    loading.present().then(() => {
+
+      this.easyBudgetApi.getAllIncomes(123)
+        .then((incomes) => {
+          this.allIncomes = incomes;
+          loading.dismiss();
+        })
+        .catch((err) => {
+
+          let toast = this.toastController.create({
+            message: 'Falha ao buscar receitas. Tente novamente',
+            duration: 3000,
+            position: 'bottom'
+          });
+
+          loading.dismiss();
+          toast.present();
+        });
+
+    });
+
+  }
+
+  openIncomeDetails(income) {
+
+    let params = {
+      action: 'EDIT',
+      income: income,
+    };
+
+    this.navCtrl.push(AddIncomePage, params);
+  }
+
+  addIncome() {
+    this.navCtrl.push(AddIncomePage);
   }
 
 }

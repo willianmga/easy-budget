@@ -1,11 +1,27 @@
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar color="primary">
     <ion-title>Receitas de {{ selectedMonthName }}</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 <ion-content padding>
+
+  <ion-fab bottom right>
+    <button ion-fab color="danger" (click)="addIncome()">
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-fab>
+
+  <ion-list>
+
+    <ion-item *ngFor="let income of allIncomes" (click)="openIncomeDetails(income)">
+      <h2>{{ income.title }}</h2>
+      <h2 item-right>{{ income.amount }}</h2>
+      <p>{{ income.tags }}</p>
+    </ion-item>
+
+  </ion-list>
 
 </ion-content>
