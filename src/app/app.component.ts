@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, Platform } from 'ionic-angular';
+import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -9,7 +9,7 @@ import { HomePage, IncomesPage, OutcomesPage, LoginPage } from '../pages/pages';
   templateUrl: 'app.html'
 })
 export class MyApp {
-  @ViewChild('myNav') nav: NavController;
+  @ViewChild(Nav) nav: Nav;
 
   appName = "Easy-Budget";
   rootPage: any = HomePage;

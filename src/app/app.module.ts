@@ -7,7 +7,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { MyApp } from './app.component';
 import { HomePage, IncomesPage, OutcomesPage, LoginPage, SigninPage, AddIncomePage, AddOutcomePage } from '../pages/pages';
-import { EasyBudgetApi } from '../shared/shared';
+import { EasyBudgetApi } from '../providers/shared';
 
 @NgModule({
   declarations: [
@@ -18,8 +18,7 @@ import { EasyBudgetApi } from '../shared/shared';
     LoginPage,
     SigninPage,
     AddIncomePage,
-    AddOutcomePage,
-    EasyBudgetApi
+    AddOutcomePage
   ],
   imports: [
     BrowserModule,
@@ -34,12 +33,12 @@ import { EasyBudgetApi } from '../shared/shared';
     LoginPage,
     SigninPage,
     AddIncomePage,
-    AddOutcomePage,
-    EasyBudgetApi
+    AddOutcomePage
   ],
   providers: [
     StatusBar,
     SplashScreen,
+    EasyBudgetApi,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
