@@ -27,6 +27,7 @@ Tecnologias utilizadas no desenvolvimento:
 Créditos do Desenvolvimento
 
 Willian Azevedo
-<willian-mga@hotmail.com>
-[Portfolio no Github Pages](https://willianmga.github.io/)
-[Linkedin](www.linkedin.com/in/willian-azevedo)
+
+<willian-mga@hotmail.com> /
+[Portfolio no Github Pages](https://willianmga.github.io/) / 
+[Linkedin](https://www.linkedin.com/in/willian-azevedo/)
