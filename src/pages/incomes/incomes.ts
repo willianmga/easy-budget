@@ -22,7 +22,7 @@ export class IncomesPage {
 
   }
 
-  ionViewDidLoad() {
+  ionViewWillEnter() {
     this.selectedMonthName = this.navParams.get('name');
 
     let loading = this.loadingController.create({
