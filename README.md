@@ -1,6 +1,6 @@
-#Easy Budget
+# Easy Budget
 
-Easy Budget é um gerenciador de finanças pessoais.
+Easy Budget é um _gerenciador de finanças pessoais_.
 Foi projetado para te ajudar de maneira simples a manter registros de suas
 despesas, receitas e cadastrar e gerenciar orçamentos mensais
 para não estourar as contas e ficar no vermelho.
@@ -9,12 +9,12 @@ EM BREVE Lançamento da versão 1.0:
 
 Features da versão 1.0
 
-[x] cadastro de receitas
-[ ] cadastro de despesas
-[ ] sumário de receitas, despesas e saldo atual na tela principal
-[ ] login 
-[ ] cadastro para novos usuários
-[ ] recuperação de login e senha
+1. [x] cadastro de receitas
+2. [ ] cadastro de despesas
+3. [ ] sumário de receitas, despesas e saldo atual na tela principal
+4. [ ] login 
+5. [ ] cadastro para novos usuários
+6. [ ] recuperação de login e senha
 
 Tecnologias utilizadas no desenvolvimento:
 
@@ -27,6 +27,6 @@ Tecnologias utilizadas no desenvolvimento:
 Créditos do Desenvolvimento
 
 Willian Azevedo
-willian-mga@hotmail.com
-https://willianmga.github.io/
-www.linkedin.com/in/willian-azevedo
+<willian-mga@hotmail.com>
+[Portfolio no Github Pages](https://willianmga.github.io/)
+[Linkedin](www.linkedin.com/in/willian-azevedo)
