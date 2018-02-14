@@ -16,7 +16,7 @@ export class EasyBudgetApi {
     sessionId: 'a9c3f73a-653a-4e12-9c36-3886befc18da'
   };
 
-  constructor(private http: Http) {
+  constructor(public http: Http) {
 
   }
 
@@ -26,7 +26,7 @@ export class EasyBudgetApi {
 
   getAllIncomes() {
     return new Promise(resolve => {
-      return this.http.get(`${this.baseUrl}/usersData/${this.loggedUser.id}/incomes.json`)
+      this.http.get(`${this.baseUrl}/usersData/${this.loggedUser.id}/incomes.json`)
         .subscribe((response) => {
           resolve(response.json());
         });
@@ -34,10 +34,8 @@ export class EasyBudgetApi {
   }
 
   postIncome(income) {
-
     return new Promise(resolve => {
-
-      return this.http.post(`${this.baseUrl}/usersData/${this.loggedUser.id}/incomes.json`, income)
+      this.http.post(`${this.baseUrl}/usersData/${this.loggedUser.id}/incomes.json`, income)
         .subscribe((response) => {
 
           if (response.status !== 200) {
@@ -46,16 +44,12 @@ export class EasyBudgetApi {
 
           resolve();
         })
-
     });
-
   }
 
   updateIncome(income) {
-
     return new Promise(resolve => {
-
-      return this.http.put(`${this.baseUrl}/usersData/${this.loggedUser.id}/incomes/${income.id}/.json`, income)
+      this.http.put(`${this.baseUrl}/usersData/${this.loggedUser.id}/incomes/${income.id}/.json`, income)
         .subscribe((response) => {
 
           if (response.status !== 200) {
@@ -64,16 +58,12 @@ export class EasyBudgetApi {
 
           resolve();
         });
-
     });
-
   }
 
   deleteIncome(incomeId) {
-
     return new Promise(resolve => {
-
-      return this.http.delete(`${this.baseUrl}/usersData/${this.loggedUser.id}/incomes/${incomeId}.json`)
+      this.http.delete(`${this.baseUrl}/usersData/${this.loggedUser.id}/incomes/${incomeId}.json`)
         .subscribe((response) => {
 
           if (response.status !== 200) {
@@ -82,14 +72,12 @@ export class EasyBudgetApi {
 
           resolve();
         });
-
     });
-
   }
 
   getAllAccounts() {
     return new Promise(resolve => {
-      return this.http.get(`${this.baseUrl}/usersData/${this.loggedUser.id}/accounts.json`)
+      this.http.get(`${this.baseUrl}/usersData/${this.loggedUser.id}/accounts.json`)
         .subscribe((response) => {
           resolve(response.json());
         });
