@@ -31,7 +31,7 @@ export class IncomesPage {
 
     loading.present().then(() => {
 
-      this.easyBudgetApi.getAllIncomes(123)
+      this.easyBudgetApi.getAllIncomes()
         .then((incomes) => {
           this.allIncomes = incomes;
           loading.dismiss();

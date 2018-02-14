@@ -57,7 +57,7 @@ export class AddIncomePage {
 
     loading.present().then(() => {
 
-      this.easyBudgetApi.postIncome(123, income)
+      this.easyBudgetApi.postIncome(income)
         .then(() => {
 
           let toast = this.toastController.create({
@@ -95,7 +95,7 @@ export class AddIncomePage {
 
     loading.present().then(() => {
 
-      this.easyBudgetApi.updateIncome(123, income)
+      this.easyBudgetApi.updateIncome(income)
         .then(() => {
 
           let toast = this.toastController.create({

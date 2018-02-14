@@ -6,97 +6,93 @@ export class EasyBudgetApi {
 
   private baseUrl = 'https://easy-budget-ce062.firebaseio.com';
 
-  mockedIncomes = [{
-      id: 1,
-      title: 'Salário do mês (Willian)',
-      amount: 2200,
-      type: 'C',
-      accountId: 1,
-      tags: ['salary'],
-      createdDate: '02/07/2018T12:00:00',
-      userId: 1
-    }, {
-      id: 1,
-      title: 'Salário do mês (Camila)',
-      amount: 1100,
-      type: 'C',
-      accountId: 1,
-      tags: ['salary'],
-      createdDate: '02/07/2018T12:05:00',
-      userId: 1
-    }
-  ];
+  private loggedUser = {
+    id: '3dd50aaf-6b03-4497-b074-d81703f07ee8',
+    displayName: 'Willian Azevedo',
+    userName: 'willianmga',
+    email: 'willian-mga@hotmail.com',
+    role: 'PRIMARY',
+    status: 'SUCCESS',
+    sessionId: 'a9c3f73a-653a-4e12-9c36-3886befc18da'
+  };
 
-  constructor(public http: Http) {
+  constructor(private http: Http) {
 
   }
 
-  getAllIncomes(userId) {
+  getLoggedUser() {
+    return Object.assign({}, this.loggedUser);
+  }
+
+  getAllIncomes() {
     return new Promise(resolve => {
-      return this.http.get(`${this.baseUrl}/usersData/${userId}/incomes.json`)
+      return this.http.get(`${this.baseUrl}/usersData/${this.loggedUser.id}/incomes.json`)
         .subscribe((response) => {
           resolve(response.json());
         });
     });
   }
 
-  postIncome(userId, income) {
+  postIncome(income) {
 
     return new Promise(resolve => {
-      this.mockedIncomes.push(income);
-      resolve();
+
+      return this.http.post(`${this.baseUrl}/usersData/${this.loggedUser.id}/incomes.json`, income)
+        .subscribe((response) => {
+
+          if (response.status !== 200) {
+            throw new Error('status-not-200');
+          }
+
+          resolve();
+        })
+
     });
 
   }
 
-  updateIncome(userId, income) {
+  updateIncome(income) {
 
     return new Promise(resolve => {
 
-      const index = this.mockedIncomes.findIndex(obj => obj.id === income.id);
+      return this.http.put(`${this.baseUrl}/usersData/${this.loggedUser.id}/incomes/${income.id}/.json`, income)
+        .subscribe((response) => {
 
-      if (index === -1) {
-        throw new Error('object-not-found');
-      }
+          if (response.status !== 200) {
+            throw new Error('status-not-200');
+          }
 
-      this.mockedIncomes[index] = income;
+          resolve();
+        });
 
-      resolve();
     });
 
   }
 
-  deleteIncome(userId, income) {
+  deleteIncome(incomeId) {
 
     return new Promise(resolve => {
 
-      const index = this.mockedIncomes.findIndex(obj => obj.id === income.id);
+      return this.http.delete(`${this.baseUrl}/usersData/${this.loggedUser.id}/incomes/${incomeId}.json`)
+        .subscribe((response) => {
 
-      if (index === -1) {
-        throw new Error('object-not-found');
-      }
+          if (response.status !== 200) {
+            throw new Error('status-not-200');
+          }
 
-      this.mockedIncomes.splice(index, 1);
+          resolve();
+        });
 
-      resolve();
     });
 
   }
 
   getAllAccounts() {
     return new Promise(resolve => {
-
-      const mockedAccounts = [
-        {
-          id: 1,
-          name: 'Conta familiar',
-          createdDate: '02/07/2018T12:00:00',
-          userName: 'willianmga'
-        }
-      ];
-
-      return resolve(mockedAccounts);
-
+      return this.http.get(`${this.baseUrl}/usersData/${this.loggedUser.id}/accounts.json`)
+        .subscribe((response) => {
+          resolve(response.json());
+        });
     });
   }
 

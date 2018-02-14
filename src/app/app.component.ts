@@ -14,16 +14,6 @@ export class MyApp {
   appName = "Easy-Budget";
   rootPage: any = HomePage;
 
-  public loggedUser = {
-    id: 1,
-    displayName: 'Willian Azevedo',
-    userName: 'willianmga',
-    email: 'willian-mga@hotmail.com',
-    role: 'PRIMARY',
-    status: 'SUCCESS',
-    sessionId: 'a9c3f73a-653a-4e12-9c36-3886befc18da'
-  };
-
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp();
   }
